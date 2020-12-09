@@ -1,0 +1,33 @@
+---
+#Centos only...
+lgsm_required_packages:
+  - epel-release
+  - curl
+  - wget
+  - tar
+  - bzip2
+  - gzip
+  - unzip
+  - python3
+  - binutils
+  - bc
+  - jq
+  - tmux
+  - glibc.i686
+  - libstdc++
+  - libstdc++.i686
+  - nmap-ncat
+lgsm_user: lgsm_admin
+lgsm_group: lgsm_admin
+lgsm_additional_groups: ""
+lgsm_installdir: /opt/lgsm
+lgsm_installer_url: https://linuxgsm.sh
+lgsm_installer_name: linuxgsm.sh
+lgsm_install_server: False
+lgsm_server: csgoserver
+lgsm_server_config: "{{ lgsm_installdir }}/lgsm/config-lgsm/{{ lgsm_server }}/instance.cfg"
+lgsm_install_crons: True
+
+# LGSM configs use a simple key="value" format to build the specific gameserver config
+# lgsm_server_config_content:
+#   some_setting: "some value"  

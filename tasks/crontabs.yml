@@ -1,0 +1,35 @@
+---
+- name: Create cron log directory
+  file:
+    path: "{{ lgsm_installdir }}/log/cron"
+    state: directory
+    mode: "0755"
+    owner: "{{ lgsm_user }}"
+    group: "{{ lgsm_group }}"
+
+- name: Cron to monitor server health
+  cron:
+    name: lgsm monitoring crontab
+    minute: "*/30"
+    user: "{{ lgsm_user }}"
+    job: "{{ lgsm_installdir }}/{{ lgsm_server }} monitor >> {{ lgsm_installdir }}/log/cron/{{ lgsm_server }}-monitor.log 2>&1"
+    cron_file: lgsm-crontabs
+
+- name: Cron to update lgsm
+  cron:
+    name: lgsm update cron
+    weekday: "0"
+    minute: "0"
+    hour: "3"
+    user: "{{ lgsm_user }}"
+    job: "{{ lgsm_installdir }}/{{ lgsm_server }} update-lgsm >> /{{ lgsm_installdir }}/log/cron/{{ lgsm_server }}-update-lgsm.log 2>&1"
+    cron_file: lgsm-crontabs
+
+- name: Cron to update gameserver
+  cron:
+    name: gameserver update cron
+    minute: "0"
+    hour: "4"
+    user: "{{ lgsm_user }}"
+    job: "{{ lgsm_installdir }}/{{ lgsm_server }} update >> {{ lgsm_installdir }}/log/cron/{{ lgsm_server }}-update-game.log 2>&1"
+    cron_file: lgsm-crontabs

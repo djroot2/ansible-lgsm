@@ -1,0 +1,5 @@
+---
+- import_tasks: install_lgsm.yml
+- import_tasks: install_gameserver.yml
+- import_tasks: crontabs.yml
+  when: lgsm_install_crons

@@ -1,0 +1,34 @@
+---
+- name: Install prerequisites
+  package:
+    name: "{{ item }}"
+    state: present
+  with_items: "{{ lgsm_required_packages }}"
+
+- name: Setup admin group
+  group:
+    name: "{{ lgsm_group }}"
+    state: present
+
+- name: Setup admin user
+  user:
+    name: "{{ lgsm_user }}"
+    group: "{{ lgsm_group }}"
+    groups: "{{ lgsm_additional_groups }}"
+    state: present
+
+- name: Create install dir
+  file:
+    path: "{{ lgsm_installdir }}"
+    state: directory
+    mode: '0755'
+    owner: "{{ lgsm_user }}"
+    group: "{{ lgsm_group }}"
+
+- name: Download lgsm installer
+  get_url:
+    url: "{{ lgsm_installer_url }}"
+    dest: "{{ lgsm_installdir }}/{{ lgsm_installer_name }}"
+    owner: "{{ lgsm_user }}"
+    group: "{{ lgsm_group }}"
+    mode: '0755'

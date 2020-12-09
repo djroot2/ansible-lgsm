@@ -1,0 +1,15 @@
+[Unit]
+Description = {{ lgsm_server }}
+After = network-online.target
+Wants = network-online.target
+
+[Service]
+Type = forking
+WorkingDirectory = {{ lgsm_installdir }}
+ExecStart = {{ lgsm_installdir }}/{{ lgsm_server }} start
+ExecStop = {{ lgsm_installdir }}/{{ lgsm_server }} stop
+User = {{ lgsm_user }}
+Restart = on-failure
+
+[Install]
+WantedBy = multi-user.target
