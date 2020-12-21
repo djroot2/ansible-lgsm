@@ -1,9 +1,8 @@
 ---
 - name: Install prerequisites
   package:
-    name: "{{ item }}"
+    name: "{{ lgsm_required_packages }}"
     state: present
-  with_items: "{{ lgsm_required_packages }}"
 
 - name: Setup admin group
   group:
