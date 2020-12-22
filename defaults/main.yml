@@ -8,6 +8,8 @@ lgsm_required_packages:
   - bzip2
   - gzip
   - unzip
+  - util-linux
+  - file
   - python3
   - binutils
   - bc
