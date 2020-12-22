@@ -22,6 +22,7 @@ lgsm_required_packages:
 lgsm_user: lgsm_admin
 lgsm_group: lgsm_admin
 lgsm_additional_groups: ""
+lgsm_comment: Linux Game Server Manager
 lgsm_installdir: /opt/lgsm
 lgsm_installer_url: https://linuxgsm.sh
 lgsm_installer_name: linuxgsm.sh

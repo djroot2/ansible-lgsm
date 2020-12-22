@@ -14,6 +14,7 @@
     name: "{{ lgsm_user }}"
     group: "{{ lgsm_group }}"
     groups: "{{ lgsm_additional_groups }}"
+    comment: "{{ lgsm_comment }}"
     state: present
 
 - name: Create install dir
