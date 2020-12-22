@@ -1,4 +1,4 @@
 # {{ ansible_managed }}
-{% for key,value in lgsm_server_config_content.iteritems() %}
+{% for key,value in lgsm_server_config_content.items() %}
 {{ key }}="{{ value }}"
 {% endfor %}
