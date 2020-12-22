@@ -10,6 +10,7 @@ ExecStart = {{ lgsm_installdir }}/{{ lgsm_server }} start
 ExecStop = {{ lgsm_installdir }}/{{ lgsm_server }} stop
 User = {{ lgsm_user }}
 Restart = on-failure
+RemainAfterExit = yes
 
 [Install]
 WantedBy = multi-user.target
