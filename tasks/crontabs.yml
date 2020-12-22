@@ -22,7 +22,7 @@
     minute: "0"
     hour: "3"
     user: "{{ lgsm_user }}"
-    job: "{{ lgsm_installdir }}/{{ lgsm_server }} update-lgsm >> /{{ lgsm_installdir }}/log/cron/{{ lgsm_server }}-update-lgsm.log 2>&1"
+    job: "{{ lgsm_installdir }}/{{ lgsm_server }} update-lgsm >> {{ lgsm_installdir }}/log/cron/{{ lgsm_server }}-update-lgsm.log 2>&1"
     cron_file: lgsm-crontabs
 
 - name: Cron to update gameserver
