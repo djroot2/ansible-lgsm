@@ -27,7 +27,7 @@ lgsm_installer_url: https://linuxgsm.sh
 lgsm_installer_name: linuxgsm.sh
 lgsm_install_server: False
 lgsm_server: csgoserver
-lgsm_server_config: "{{ lgsm_installdir }}/lgsm/config-lgsm/{{ lgsm_server }}/instance.cfg"
+lgsm_server_config: "{{ lgsm_installdir }}/lgsm/config-lgsm/{{ lgsm_server }}/{{ lgsm_server }}.cfg"
 lgsm_install_crons: True
 
 # LGSM configs use a simple key="value" format to build the specific gameserver config
