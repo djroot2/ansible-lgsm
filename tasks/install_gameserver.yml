@@ -7,14 +7,6 @@
     chdir: "{{ lgsm_installdir }}"
     creates: "{{ lgsm_installdir }}/{{ lgsm_server }}"
 
-- name: Create instance config file
-  template:
-    src: instance.cfg.j2
-    dest: "{{ lgsm_installdir }}/lgsm//config-lgsm/{{ lgsm_server }}/{{ lgsm_server}}.cfg"
-    mode: '0644'
-    owner: "{{ lgsm_user }}"
-    group: "{{ lgsm_group }}"
-
 - name: Install gameserver
   become: true
   become_user: '{{ lgsm_user }}'
@@ -23,6 +15,14 @@
     chdir: "{{ lgsm_installdir }}"
     creates: "{{ lgsm_installdir }}/serverfiles"
   when: lgsm_install_server
+
+- name: Create instance config file
+  template:
+    src: instance.cfg.j2
+    dest: "{{ lgsm_server_config }}"
+    mode: '0644'
+    owner: "{{ lgsm_user }}"
+    group: "{{ lgsm_group }}"
 
 - name: Install gameserver systemd unit file
   template:

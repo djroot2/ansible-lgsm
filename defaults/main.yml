@@ -8,6 +8,8 @@ lgsm_required_packages:
   - bzip2
   - gzip
   - unzip
+  - util-linux
+  - file
   - python3
   - binutils
   - bc
@@ -20,14 +22,45 @@ lgsm_required_packages:
 lgsm_user: lgsm_admin
 lgsm_group: lgsm_admin
 lgsm_additional_groups: ""
+lgsm_comment: Linux Game Server Manager
 lgsm_installdir: /opt/lgsm
 lgsm_installer_url: https://linuxgsm.sh
 lgsm_installer_name: linuxgsm.sh
 lgsm_install_server: False
 lgsm_server: csgoserver
-lgsm_server_config: "{{ lgsm_installdir }}/lgsm/config-lgsm/{{ lgsm_server }}/instance.cfg"
+lgsm_server_config: "{{ lgsm_installdir }}/lgsm/config-lgsm/{{ lgsm_server }}/{{ lgsm_server }}.cfg"
 lgsm_install_crons: True
 
 # LGSM configs use a simple key="value" format to build the specific gameserver config
-# lgsm_server_config_content:
-#   some_setting: "some value"  
+# For available options see the _default.cfg file of your server: https://github.com/GameServerManagers/LinuxGSM/tree/master/lgsm/config-default/config-lgsm
+# Some csgoserver defaults
+lgsm_server_config_content:
+  ## Game Server Login Token (GSLT): Required
+  # GSLT is required for running a public server.
+  # More info: https://docs.linuxgsm.com/steamcmd/gslt
+  gslt: ""
+
+  ## Predefined Parameters | https://docs.linuxgsm.com/configuration/start-parameters
+  # https://docs.linuxgsm.com/game-servers/counter-strike-global-offensive
+  # [Game Modes]         gametype  gamemode  mapgroup (you can mix these across all Game Modes except Danger Zone, but use only one)
+  # Arms Race            1         0         mg_armsrace
+  # Classic Casual       0         0         mg_casualsigma, mg_casualdelta
+  # Classic Competitive  0         1         mg_active, mg_reserves, mg_hostage, mg_de_dust2
+  # Custom               3         0
+  # Deathmatch           1         2         mg_deathmatch
+  # Demolition           1         1         mg_demolition
+  # Wingman              0         2
+  # Danger Zone          6         0         mg_dz_blacksite (map: dz_blacksite), mg_dz_sirocco (map: dz_sirocco)
+  gametype: "0"
+  gamemode: "1"
+  mapgroup: "mg_active"
+  ip: "0.0.0.0"
+  port: "27015"
+  clientport: "27005"
+  sourcetvport: "27020"
+  defaultmap: "de_mirage"
+  maxplayers: "16"
+  tickrate: "64"
+
+  ## Updating | https://docs.linuxgsm.com/commands/update
+  updateonstart: "on"

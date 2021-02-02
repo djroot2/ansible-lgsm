@@ -1,9 +1,8 @@
 ---
 - name: Install prerequisites
   package:
-    name: "{{ item }}"
+    name: "{{ lgsm_required_packages }}"
     state: present
-  with_items: "{{ lgsm_required_packages }}"
 
 - name: Setup admin group
   group:
@@ -15,15 +14,10 @@
     name: "{{ lgsm_user }}"
     group: "{{ lgsm_group }}"
     groups: "{{ lgsm_additional_groups }}"
+    comment: "{{ lgsm_comment }}"
+    system: yes
+    home: "{{ lgsm_installdir }}"
     state: present
-
-- name: Create install dir
-  file:
-    path: "{{ lgsm_installdir }}"
-    state: directory
-    mode: '0755'
-    owner: "{{ lgsm_user }}"
-    group: "{{ lgsm_group }}"
 
 - name: Download lgsm installer
   get_url:
